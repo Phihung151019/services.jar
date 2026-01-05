@@ -1,0 +1,52 @@
+.class public final Lcom/android/server/accessibility/UiAutomationManager$1;
+.super Ljava/lang/Object;
+.source "qb/104190634 8d7d8e6ef21e39a67cd47e062606d74a8e3763a481f56c365f28d7adc1854ed1"
+
+# interfaces
+.implements Landroid/os/IBinder$DeathRecipient;
+
+
+# instance fields
+.field public final synthetic this$0:Lcom/android/server/accessibility/UiAutomationManager;
+
+
+# direct methods
+.method public constructor <init>(Lcom/android/server/accessibility/UiAutomationManager;)V
+    .locals 0
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    iput-object p1, p0, Lcom/android/server/accessibility/UiAutomationManager$1;->this$0:Lcom/android/server/accessibility/UiAutomationManager;
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public final binderDied()V
+    .locals 2
+
+    iget-object v0, p0, Lcom/android/server/accessibility/UiAutomationManager$1;->this$0:Lcom/android/server/accessibility/UiAutomationManager;
+
+    iget-object v0, v0, Lcom/android/server/accessibility/UiAutomationManager;->mUiAutomationServiceOwner:Landroid/os/IBinder;
+
+    const/4 v1, 0x0
+
+    invoke-interface {v0, p0, v1}, Landroid/os/IBinder;->unlinkToDeath(Landroid/os/IBinder$DeathRecipient;I)Z
+
+    iget-object p0, p0, Lcom/android/server/accessibility/UiAutomationManager$1;->this$0:Lcom/android/server/accessibility/UiAutomationManager;
+
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Lcom/android/server/accessibility/UiAutomationManager;->mUiAutomationServiceOwner:Landroid/os/IBinder;
+
+    invoke-virtual {p0}, Lcom/android/server/accessibility/UiAutomationManager;->destroyUiAutomationService()V
+
+    const-string/jumbo p0, "UiAutomationManager"
+
+    const-string/jumbo v0, "UiAutomation service owner died"
+
+    invoke-static {p0, v0}, Landroid/util/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+.end method

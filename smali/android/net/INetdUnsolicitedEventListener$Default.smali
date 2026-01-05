@@ -1,0 +1,163 @@
+.class public Landroid/net/INetdUnsolicitedEventListener$Default;
+.super Ljava/lang/Object;
+.source "qb/104190634 8d7d8e6ef21e39a67cd47e062606d74a8e3763a481f56c365f28d7adc1854ed1"
+
+# interfaces
+.implements Landroid/net/INetdUnsolicitedEventListener;
+
+
+# direct methods
+.method public constructor <init>()V
+    .locals 0
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public asBinder()Landroid/os/IBinder;
+    .locals 0
+
+    const/4 p0, 0x0
+
+    return-object p0
+.end method
+
+.method public getInterfaceHash()Ljava/lang/String;
+    .locals 0
+
+    const-string p0, ""
+
+    return-object p0
+.end method
+
+.method public getInterfaceVersion()I
+    .locals 0
+
+    const/4 p0, 0x0
+
+    return p0
+.end method
+
+.method public onInterfaceAdded(Ljava/lang/String;)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    return-void
+.end method
+
+.method public onInterfaceAddressRemoved(Ljava/lang/String;Ljava/lang/String;II)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    return-void
+.end method
+
+.method public onInterfaceAddressUpdated(Ljava/lang/String;Ljava/lang/String;II)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    return-void
+.end method
+
+.method public onInterfaceChanged(Ljava/lang/String;Z)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    return-void
+.end method
+
+.method public onInterfaceClassActivityChanged(ZIJI)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    return-void
+.end method
+
+.method public onInterfaceDnsServerInfo(Ljava/lang/String;J[Ljava/lang/String;)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    return-void
+.end method
+
+.method public onInterfaceLinkStateChanged(Ljava/lang/String;Z)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    return-void
+.end method
+
+.method public onInterfaceRemoved(Ljava/lang/String;)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    return-void
+.end method
+
+.method public onQuotaLimitReached(Ljava/lang/String;Ljava/lang/String;)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    return-void
+.end method
+
+.method public onRouteChanged(ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    return-void
+.end method
+
+.method public onStrictCleartextDetected(ILjava/lang/String;)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    return-void
+.end method

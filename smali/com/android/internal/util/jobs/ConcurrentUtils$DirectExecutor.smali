@@ -1,0 +1,24 @@
+.class public final Lcom/android/internal/util/jobs/ConcurrentUtils$DirectExecutor;
+.super Ljava/lang/Object;
+.source "qb/104190634 8d7d8e6ef21e39a67cd47e062606d74a8e3763a481f56c365f28d7adc1854ed1"
+
+# interfaces
+.implements Ljava/util/concurrent/Executor;
+
+
+# virtual methods
+.method public final execute(Ljava/lang/Runnable;)V
+    .locals 0
+
+    invoke-interface {p1}, Ljava/lang/Runnable;->run()V
+
+    return-void
+.end method
+
+.method public final toString()Ljava/lang/String;
+    .locals 0
+
+    const-string p0, "DIRECT_EXECUTOR"
+
+    return-object p0
+.end method

@@ -1,0 +1,7 @@
+.class public final Lcom/android/server/appop/AttributedOp$InProgressStartOpEventPool;
+.super Landroid/util/Pools$SimplePool;
+.source "qb/104190634 8d7d8e6ef21e39a67cd47e062606d74a8e3763a481f56c365f28d7adc1854ed1"
+
+
+# instance fields
+.field public mOpEventProxyInfoPool:Lcom/android/server/appop/AttributedOp$OpEventProxyInfoPool;

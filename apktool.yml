@@ -1,0 +1,6 @@
+version: v2.12.1-41-07ae073b-SNAPSHOT
+apkFileName: services.jar
+sdkInfo:
+  minSdkVersion: 29
+doNotCompress:
+- dex

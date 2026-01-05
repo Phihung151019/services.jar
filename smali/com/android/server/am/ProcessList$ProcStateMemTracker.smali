@@ -1,0 +1,174 @@
+.class public final Lcom/android/server/am/ProcessList$ProcStateMemTracker;
+.super Ljava/lang/Object;
+.source "qb/104190634 8d7d8e6ef21e39a67cd47e062606d74a8e3763a481f56c365f28d7adc1854ed1"
+
+
+# instance fields
+.field public final mHighestMem:[I
+
+.field public mPendingHighestMemState:I
+
+.field public mPendingMemState:I
+
+.field public mPendingScalingFactor:F
+
+.field public final mScalingFactor:[F
+
+.field public mTotalHighestMem:I
+
+
+# direct methods
+.method public constructor <init>()V
+    .locals 4
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    const/4 v0, 0x5
+
+    new-array v1, v0, [I
+
+    iput-object v1, p0, Lcom/android/server/am/ProcessList$ProcStateMemTracker;->mHighestMem:[I
+
+    new-array v1, v0, [F
+
+    iput-object v1, p0, Lcom/android/server/am/ProcessList$ProcStateMemTracker;->mScalingFactor:[F
+
+    const/4 v1, 0x4
+
+    iput v1, p0, Lcom/android/server/am/ProcessList$ProcStateMemTracker;->mTotalHighestMem:I
+
+    const/4 v1, 0x0
+
+    :goto_0
+    if-ge v1, v0, :cond_0
+
+    iget-object v2, p0, Lcom/android/server/am/ProcessList$ProcStateMemTracker;->mHighestMem:[I
+
+    aput v0, v2, v1
+
+    iget-object v2, p0, Lcom/android/server/am/ProcessList$ProcStateMemTracker;->mScalingFactor:[F
+
+    const/high16 v3, 0x3f800000    # 1.0f
+
+    aput v3, v2, v1
+
+    add-int/lit8 v1, v1, 0x1
+
+    goto :goto_0
+
+    :cond_0
+    const/4 v0, -0x1
+
+    iput v0, p0, Lcom/android/server/am/ProcessList$ProcStateMemTracker;->mPendingMemState:I
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public final dumpLine(Ljava/io/PrintWriter;)V
+    .locals 7
+
+    const-string/jumbo v0, "best="
+
+    invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+
+    iget v0, p0, Lcom/android/server/am/ProcessList$ProcStateMemTracker;->mTotalHighestMem:I
+
+    invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(I)V
+
+    const-string v0, " ("
+
+    invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+
+    const/4 v0, 0x0
+
+    move v1, v0
+
+    :goto_0
+    const-string/jumbo v2, "x"
+
+    const-string v3, " "
+
+    const/4 v4, 0x5
+
+    if-ge v0, v4, :cond_2
+
+    iget-object v5, p0, Lcom/android/server/am/ProcessList$ProcStateMemTracker;->mHighestMem:[I
+
+    aget v6, v5, v0
+
+    if-ge v6, v4, :cond_1
+
+    if-eqz v1, :cond_0
+
+    const-string v1, ", "
+
+    invoke-virtual {p1, v1}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+
+    :cond_0
+    invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(I)V
+
+    const-string v1, "="
+
+    invoke-virtual {p1, v1}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+
+    aget v1, v5, v0
+
+    invoke-virtual {p1, v1}, Ljava/io/PrintWriter;->print(I)V
+
+    invoke-virtual {p1, v3}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+
+    iget-object v1, p0, Lcom/android/server/am/ProcessList$ProcStateMemTracker;->mScalingFactor:[F
+
+    aget v1, v1, v0
+
+    invoke-virtual {p1, v1}, Ljava/io/PrintWriter;->print(F)V
+
+    invoke-virtual {p1, v2}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+
+    const/4 v1, 0x1
+
+    :cond_1
+    add-int/lit8 v0, v0, 0x1
+
+    goto :goto_0
+
+    :cond_2
+    const-string v0, ")"
+
+    invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+
+    iget v0, p0, Lcom/android/server/am/ProcessList$ProcStateMemTracker;->mPendingMemState:I
+
+    if-ltz v0, :cond_3
+
+    const-string v0, " / pending state="
+
+    invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+
+    iget v0, p0, Lcom/android/server/am/ProcessList$ProcStateMemTracker;->mPendingMemState:I
+
+    invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(I)V
+
+    const-string v0, " highest="
+
+    invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+
+    iget v0, p0, Lcom/android/server/am/ProcessList$ProcStateMemTracker;->mPendingHighestMemState:I
+
+    invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(I)V
+
+    invoke-virtual {p1, v3}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+
+    iget p0, p0, Lcom/android/server/am/ProcessList$ProcStateMemTracker;->mPendingScalingFactor:F
+
+    invoke-virtual {p1, p0}, Ljava/io/PrintWriter;->print(F)V
+
+    invoke-virtual {p1, v2}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+
+    :cond_3
+    invoke-virtual {p1}, Ljava/io/PrintWriter;->println()V
+
+    return-void
+.end method

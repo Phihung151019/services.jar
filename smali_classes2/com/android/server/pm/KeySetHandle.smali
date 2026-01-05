@@ -1,0 +1,39 @@
+.class public final Lcom/android/server/pm/KeySetHandle;
+.super Landroid/os/Binder;
+.source "qb/104190634 8d7d8e6ef21e39a67cd47e062606d74a8e3763a481f56c365f28d7adc1854ed1"
+
+
+# instance fields
+.field public final mId:J
+
+.field public mRefCount:I
+
+
+# direct methods
+.method public constructor <init>(J)V
+    .locals 0
+
+    invoke-direct {p0}, Landroid/os/Binder;-><init>()V
+
+    iput-wide p1, p0, Lcom/android/server/pm/KeySetHandle;->mId:J
+
+    const/4 p1, 0x1
+
+    iput p1, p0, Lcom/android/server/pm/KeySetHandle;->mRefCount:I
+
+    return-void
+.end method
+
+.method public constructor <init>(JI)V
+    .locals 0
+
+    invoke-direct {p0}, Landroid/os/Binder;-><init>()V
+
+    iput-wide p1, p0, Lcom/android/server/pm/KeySetHandle;->mId:J
+
+    const/4 p1, 0x0
+
+    iput p1, p0, Lcom/android/server/pm/KeySetHandle;->mRefCount:I
+
+    return-void
+.end method

@@ -1,0 +1,351 @@
+.class public final Lcom/android/server/ZramWriteback;
+.super Landroid/app/job/JobService;
+.source "qb/104190634 8d7d8e6ef21e39a67cd47e062606d74a8e3763a481f56c365f28d7adc1854ed1"
+
+
+# static fields
+.field public static final sZramWriteback:Landroid/content/ComponentName;
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .locals 3
+
+    new-instance v0, Landroid/content/ComponentName;
+
+    const-class v1, Lcom/android/server/ZramWriteback;
+
+    invoke-virtual {v1}, Ljava/lang/Class;->getName()Ljava/lang/String;
+
+    move-result-object v1
+
+    const-string/jumbo v2, "android"
+
+    invoke-direct {v0, v2, v1}, Landroid/content/ComponentName;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+
+    sput-object v0, Lcom/android/server/ZramWriteback;->sZramWriteback:Landroid/content/ComponentName;
+
+    return-void
+.end method
+
+.method public constructor <init>()V
+    .locals 0
+
+    invoke-direct {p0}, Landroid/app/job/JobService;-><init>()V
+
+    return-void
+.end method
+
+.method public static getWrittenPageCount()I
+    .locals 4
+
+    const/4 v0, 0x0
+
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    filled-new-array {v0}, [Ljava/lang/Object;
+
+    move-result-object v0
+
+    const-string v1, "/sys/block/zram%d/bd_stat"
+
+    invoke-static {v1, v0}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v0
+
+    :try_start_0
+    new-instance v1, Ljava/io/File;
+
+    invoke-direct {v1, v0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    const-string v2, ""
+
+    const/16 v3, 0x80
+
+    invoke-static {v1, v3, v2}, Landroid/os/FileUtils;->readTextFile(Ljava/io/File;ILjava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/String;->trim()Ljava/lang/String;
+
+    move-result-object v1
+
+    const-string/jumbo v2, "\\s+"
+
+    invoke-virtual {v1, v2}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
+
+    move-result-object v1
+
+    const/4 v2, 0x2
+
+    aget-object v1, v1, v2
+
+    const/16 v2, 0xa
+
+    invoke-static {v1, v2}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;I)I
+
+    move-result v0
+    :try_end_0
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
+
+    return v0
+
+    :catch_0
+    const-string v1, "Failed to read writeback stats from "
+
+    invoke-virtual {v1, v0}, Ljava/lang/String;->concat(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string/jumbo v1, "ZramWriteback"
+
+    invoke-static {v1, v0}, Landroid/util/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    const/4 v0, -0x1
+
+    return v0
+.end method
+
+.method public static markPagesAsIdle()V
+    .locals 3
+
+    const/4 v0, 0x0
+
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    filled-new-array {v0}, [Ljava/lang/Object;
+
+    move-result-object v0
+
+    const-string v1, "/sys/block/zram%d/idle"
+
+    invoke-static {v1, v0}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v0
+
+    :try_start_0
+    new-instance v1, Ljava/io/File;
+
+    invoke-direct {v1, v0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    const-string/jumbo v2, "all"
+
+    invoke-static {v1, v2}, Landroid/os/FileUtils;->stringToFile(Ljava/io/File;Ljava/lang/String;)V
+    :try_end_0
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
+
+    return-void
+
+    :catch_0
+    const-string v1, "Failed to write to "
+
+    invoke-virtual {v1, v0}, Ljava/lang/String;->concat(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string/jumbo v1, "ZramWriteback"
+
+    invoke-static {v1, v0}, Landroid/util/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+.end method
+
+.method public static scheduleZramWriteback(Landroid/content/Context;)V
+    .locals 8
+
+    const-string/jumbo v0, "ro.zram.mark_idle_delay_mins"
+
+    const/16 v1, 0x14
+
+    invoke-static {v0, v1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+
+    move-result v0
+
+    const-string/jumbo v1, "ro.zram.first_wb_delay_mins"
+
+    const/16 v2, 0xb4
+
+    invoke-static {v1, v2}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+
+    move-result v1
+
+    const-string/jumbo v2, "zram.force_writeback"
+
+    const/4 v3, 0x0
+
+    invoke-static {v2, v3}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
+
+    move-result v2
+
+    const-string/jumbo v3, "jobscheduler"
+
+    invoke-virtual {p0, v3}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object p0
+
+    check-cast p0, Landroid/app/job/JobScheduler;
+
+    new-instance v3, Landroid/app/job/JobInfo$Builder;
+
+    sget-object v4, Lcom/android/server/ZramWriteback;->sZramWriteback:Landroid/content/ComponentName;
+
+    const/16 v5, 0x32b
+
+    invoke-direct {v3, v5, v4}, Landroid/app/job/JobInfo$Builder;-><init>(ILandroid/content/ComponentName;)V
+
+    sget-object v5, Ljava/util/concurrent/TimeUnit;->MINUTES:Ljava/util/concurrent/TimeUnit;
+
+    int-to-long v6, v0
+
+    invoke-virtual {v5, v6, v7}, Ljava/util/concurrent/TimeUnit;->toMillis(J)J
+
+    move-result-wide v6
+
+    invoke-virtual {v3, v6, v7}, Landroid/app/job/JobInfo$Builder;->setMinimumLatency(J)Landroid/app/job/JobInfo$Builder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/app/job/JobInfo$Builder;->build()Landroid/app/job/JobInfo;
+
+    move-result-object v0
+
+    invoke-virtual {p0, v0}, Landroid/app/job/JobScheduler;->schedule(Landroid/app/job/JobInfo;)I
+
+    new-instance v0, Landroid/app/job/JobInfo$Builder;
+
+    const/16 v3, 0x32c
+
+    invoke-direct {v0, v3, v4}, Landroid/app/job/JobInfo$Builder;-><init>(ILandroid/content/ComponentName;)V
+
+    int-to-long v3, v1
+
+    invoke-virtual {v5, v3, v4}, Ljava/util/concurrent/TimeUnit;->toMillis(J)J
+
+    move-result-wide v3
+
+    invoke-virtual {v0, v3, v4}, Landroid/app/job/JobInfo$Builder;->setMinimumLatency(J)Landroid/app/job/JobInfo$Builder;
+
+    move-result-object v0
+
+    xor-int/lit8 v1, v2, 0x1
+
+    invoke-virtual {v0, v1}, Landroid/app/job/JobInfo$Builder;->setRequiresDeviceIdle(Z)Landroid/app/job/JobInfo$Builder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/app/job/JobInfo$Builder;->build()Landroid/app/job/JobInfo;
+
+    move-result-object v0
+
+    invoke-virtual {p0, v0}, Landroid/app/job/JobScheduler;->schedule(Landroid/app/job/JobInfo;)I
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public final onStartJob(Landroid/app/job/JobParameters;)Z
+    .locals 5
+
+    const-string/jumbo v0, "ZramWriteback"
+
+    const/4 v1, 0x0
+
+    :try_start_0
+    new-instance v2, Ljava/io/File;
+
+    const-string v3, "/sys/block/zram%d/backing_dev"
+
+    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v4
+
+    filled-new-array {v4}, [Ljava/lang/Object;
+
+    move-result-object v4
+
+    invoke-static {v3, v4}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-direct {v2, v3}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    const-string v3, ""
+
+    const/16 v4, 0x80
+
+    invoke-static {v2, v4, v3}, Landroid/os/FileUtils;->readTextFile(Ljava/io/File;ILjava/lang/String;)Ljava/lang/String;
+
+    move-result-object v2
+
+    const-string/jumbo v3, "none"
+
+    invoke-virtual {v2}, Ljava/lang/String;->trim()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v3, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+    :try_end_0
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
+
+    if-nez v2, :cond_1
+
+    invoke-virtual {p1}, Landroid/app/job/JobParameters;->getJobId()I
+
+    move-result v0
+
+    const/16 v2, 0x32b
+
+    if-ne v0, v2, :cond_0
+
+    invoke-static {}, Lcom/android/server/ZramWriteback;->markPagesAsIdle()V
+
+    invoke-virtual {p0, p1, v1}, Landroid/app/job/JobService;->jobFinished(Landroid/app/job/JobParameters;Z)V
+
+    return v1
+
+    :cond_0
+    new-instance v0, Lcom/android/server/ZramWriteback$1;
+
+    invoke-direct {v0, p0, p1}, Lcom/android/server/ZramWriteback$1;-><init>(Lcom/android/server/ZramWriteback;Landroid/app/job/JobParameters;)V
+
+    invoke-virtual {v0}, Ljava/lang/Thread;->start()V
+
+    const/4 p0, 0x1
+
+    return p0
+
+    :cond_1
+    :try_start_1
+    const-string/jumbo v2, "Writeback device is not set"
+
+    invoke-static {v0, v2}, Landroid/util/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
+    :try_end_1
+    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_0
+
+    goto :goto_0
+
+    :catch_0
+    const-string/jumbo v2, "Writeback is not enabled on zram"
+
+    invoke-static {v0, v2}, Landroid/util/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    :goto_0
+    invoke-virtual {p0, p1, v1}, Landroid/app/job/JobService;->jobFinished(Landroid/app/job/JobParameters;Z)V
+
+    return v1
+.end method
+
+.method public final onStopJob(Landroid/app/job/JobParameters;)Z
+    .locals 0
+
+    const/4 p0, 0x0
+
+    return p0
+.end method

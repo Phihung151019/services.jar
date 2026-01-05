@@ -1,0 +1,120 @@
+.class public final Lcom/android/server/audio/MediaFocusControl$1;
+.super Ljava/lang/Thread;
+.source "qb/104190634 8d7d8e6ef21e39a67cd47e062606d74a8e3763a481f56c365f28d7adc1854ed1"
+
+
+# instance fields
+.field public final synthetic this$0:Lcom/android/server/audio/MediaFocusControl;
+
+.field public final synthetic val$pcb2:Landroid/media/audiopolicy/IAudioPolicyCallback;
+
+
+# direct methods
+.method public constructor <init>(Lcom/android/server/audio/MediaFocusControl;Landroid/media/audiopolicy/IAudioPolicyCallback;)V
+    .locals 0
+
+    iput-object p1, p0, Lcom/android/server/audio/MediaFocusControl$1;->this$0:Lcom/android/server/audio/MediaFocusControl;
+
+    iput-object p2, p0, Lcom/android/server/audio/MediaFocusControl$1;->val$pcb2:Landroid/media/audiopolicy/IAudioPolicyCallback;
+
+    invoke-direct {p0}, Ljava/lang/Thread;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public final run()V
+    .locals 5
+
+    const-string v0, "Can\'t call notifyAudioFocusGrant() on IAudioPolicyCallback "
+
+    sget-object v1, Lcom/android/server/audio/MediaFocusControl;->mAudioFocusLock:Ljava/lang/Object;
+
+    monitor-enter v1
+
+    :try_start_0
+    iget-object v2, p0, Lcom/android/server/audio/MediaFocusControl$1;->this$0:Lcom/android/server/audio/MediaFocusControl;
+
+    iget-object v2, v2, Lcom/android/server/audio/MediaFocusControl;->mFocusStack:Ljava/util/Stack;
+
+    invoke-virtual {v2}, Ljava/util/Stack;->isEmpty()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    monitor-exit v1
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    return-void
+
+    :catchall_0
+    move-exception p0
+
+    goto :goto_1
+
+    :cond_0
+    :try_start_1
+    iget-object v2, p0, Lcom/android/server/audio/MediaFocusControl$1;->val$pcb2:Landroid/media/audiopolicy/IAudioPolicyCallback;
+
+    iget-object v3, p0, Lcom/android/server/audio/MediaFocusControl$1;->this$0:Lcom/android/server/audio/MediaFocusControl;
+
+    iget-object v3, v3, Lcom/android/server/audio/MediaFocusControl;->mFocusStack:Ljava/util/Stack;
+
+    invoke-virtual {v3}, Ljava/util/Stack;->peek()Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Lcom/android/server/audio/FocusRequester;
+
+    invoke-virtual {v3}, Lcom/android/server/audio/FocusRequester;->toAudioFocusInfo()Landroid/media/AudioFocusInfo;
+
+    move-result-object v3
+
+    const/4 v4, 0x1
+
+    invoke-interface {v2, v3, v4}, Landroid/media/audiopolicy/IAudioPolicyCallback;->notifyAudioFocusGrant(Landroid/media/AudioFocusInfo;I)V
+    :try_end_1
+    .catch Landroid/os/RemoteException; {:try_start_1 .. :try_end_1} :catch_0
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    goto :goto_0
+
+    :catch_0
+    move-exception v2
+
+    :try_start_2
+    const-string/jumbo v3, "MediaFocusControl"
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4, v0}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    iget-object p0, p0, Lcom/android/server/audio/MediaFocusControl$1;->val$pcb2:Landroid/media/audiopolicy/IAudioPolicyCallback;
+
+    invoke-interface {p0}, Landroid/media/audiopolicy/IAudioPolicyCallback;->asBinder()Landroid/os/IBinder;
+
+    move-result-object p0
+
+    invoke-virtual {v4, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p0
+
+    invoke-static {v3, p0, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    :goto_0
+    monitor-exit v1
+
+    return-void
+
+    :goto_1
+    monitor-exit v1
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+
+    throw p0
+.end method

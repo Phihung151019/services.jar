@@ -1,0 +1,26 @@
+.class public interface abstract Lcom/android/server/wm/WindowContainerListener;
+.super Ljava/lang/Object;
+.source "qb/104190634 8d7d8e6ef21e39a67cd47e062606d74a8e3763a481f56c365f28d7adc1854ed1"
+
+# interfaces
+.implements Lcom/android/server/wm/ConfigurationContainerListener;
+
+
+# virtual methods
+.method public onDisplayChanged(Lcom/android/server/wm/DisplayContent;)V
+    .locals 0
+
+    return-void
+.end method
+
+.method public onRemoved()V
+    .locals 0
+
+    return-void
+.end method
+
+.method public onVisibleRequestedChanged(Z)V
+    .locals 0
+
+    return-void
+.end method

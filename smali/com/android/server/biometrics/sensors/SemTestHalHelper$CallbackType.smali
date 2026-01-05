@@ -1,0 +1,135 @@
+.class public final enum Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+.super Ljava/lang/Enum;
+.source "qb/104190634 8d7d8e6ef21e39a67cd47e062606d74a8e3763a481f56c365f28d7adc1854ed1"
+
+
+# annotations
+.annotation system Ldalvik/annotation/Signature;
+    value = {
+        "Ljava/lang/Enum<",
+        "Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;",
+        ">;"
+    }
+.end annotation
+
+
+# static fields
+.field public static final synthetic $VALUES:[Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+.field public static final enum ACQUIRED:Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+.field public static final enum AUTHENTICATED:Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+.field public static final enum ENROLL_RESULT:Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+.field public static final enum ERROR:Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+.field public static final enum TSP_FOD:Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .locals 9
+
+    new-instance v0, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    const-string v1, "ACQUIRED"
+
+    const/4 v2, 0x0
+
+    invoke-direct {v0, v1, v2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
+
+    sput-object v0, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;->ACQUIRED:Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    new-instance v1, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    const-string v2, "ERROR"
+
+    const/4 v3, 0x1
+
+    invoke-direct {v1, v2, v3}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
+
+    sput-object v1, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;->ERROR:Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    new-instance v2, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    const-string v3, "ENROLL_RESULT"
+
+    const/4 v4, 0x2
+
+    invoke-direct {v2, v3, v4}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
+
+    sput-object v2, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;->ENROLL_RESULT:Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    new-instance v3, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    const-string v4, "AUTHENTICATED"
+
+    const/4 v5, 0x3
+
+    invoke-direct {v3, v4, v5}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
+
+    sput-object v3, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;->AUTHENTICATED:Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    new-instance v4, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    const-string/jumbo v5, "REMOVED"
+
+    const/4 v6, 0x4
+
+    invoke-direct {v4, v5, v6}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
+
+    new-instance v5, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    const-string v6, "ENUMERATE"
+
+    const/4 v7, 0x5
+
+    invoke-direct {v5, v6, v7}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
+
+    new-instance v6, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    const-string/jumbo v7, "TSP_FOD"
+
+    const/4 v8, 0x6
+
+    invoke-direct {v6, v7, v8}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
+
+    sput-object v6, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;->TSP_FOD:Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    filled-new-array/range {v0 .. v6}, [Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    move-result-object v0
+
+    sput-object v0, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;->$VALUES:[Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    return-void
+.end method
+
+.method public static valueOf(Ljava/lang/String;)Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+    .locals 1
+
+    const-class v0, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    return-object p0
+.end method
+
+.method public static values()[Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+    .locals 1
+
+    sget-object v0, Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;->$VALUES:[Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    invoke-virtual {v0}, [Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;->clone()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, [Lcom/android/server/biometrics/sensors/SemTestHalHelper$CallbackType;
+
+    return-object v0
+.end method
