@@ -1,5 +1,5 @@
 version: v2.12.1-41-07ae073b-SNAPSHOT
-apkFileName: services.jar
+apkFileName: services.out.jar
 sdkInfo:
   minSdkVersion: 29
 doNotCompress:
